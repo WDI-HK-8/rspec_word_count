@@ -15,6 +15,6 @@ class String
     string_hash.each {|word, value| 
       return {word => value} if value > 1
     }
-    return 1
+    return {"values" => 1}
   end
 end
