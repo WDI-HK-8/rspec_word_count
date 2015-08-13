@@ -1,21 +1,12 @@
 class String
   def unique_word_count
-  	word_count = 0
-  	words = self.downcase.gsub(/[^a-z0-9\s]/i, '').split
-	for i in 0..words.length-1
-	 	unique = true
-	 	for j in i+1..words.length-1
-	 	    if words[i]==words[j]
-	 	        unique = false
-	    	end
-	    end
-	     word_count += 1 if unique==true
-	 end
-	 word_count
+  	array_of_individual_words = words_from_string(self)
+  	return 0 if array_of_individual_words.length == 0
+  	return array_of_individual_words.uniq.count
   end
   
   def word_frequency_count
-    words = self.downcase.gsub(/[^a-z0-9\s]/i, '').split
+    words = words_from_string(self)
     wordHash = Hash.new
     while (words.length > 0) do
         frequency = 1
@@ -26,5 +17,11 @@ class String
         words.delete(words[0])
     end
     wordHash
-  end 
+  end
+
+  private
+
+  def words_from_string(original_string)
+  	return original_string.downcase.gsub(/[^a-z0-9\s]/i, '').split
+  end
 end
